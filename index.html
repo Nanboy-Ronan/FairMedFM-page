@@ -227,18 +227,55 @@
     <!-- </section> -->
 
 
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop is-centered has-text-centered">
-      <h2 class="title is-3", id="pipeline">A Comprehensive Medical FM Integration Pipeline</h2>
-      <div class="content has-text-justified">
-        <p>
-          The figure above presents the pipeline of FairMedFM framework, which offers an easy-to-use codebase for benchmarking the fairness of FMs in medical imaging. FairMedFM currently contains 17 datasets (9 for classification and 8 for segmentation) and 20 FMs (11 for classification and 9 for segmentation).
-          It also integrates 9 fairness metrics (5 for classification and 4 for segmentation) and 6 unfairness mitigation algorithms (3 for classification and 3 for segmentation), trying to provide a relatively comprehensive benchmark for fairness in medical imaging FMs.
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container is-max-desktop is-centered has-text-centered">
+          <h2 class="title is-3" id="pipeline">A Comprehensive Medical FM Integration Pipeline</h2>
+          <div class="content has-text-justified">
+            <p>
+              The figure above presents the pipeline of FairMedFM framework, which offers an easy-to-use codebase for benchmarking the fairness of FMs in medical imaging. FairMedFM currently contains 17 datasets (9 for classification and 8 for segmentation) and 20 FMs (11 for classification and 9 for segmentation).
+              It also integrates 9 fairness metrics (5 for classification and 4 for segmentation) and 6 unfairness mitigation algorithms (3 for classification and 3 for segmentation), trying to provide a relatively comprehensive benchmark for fairness in medical imaging FMs.
+            </p>
+            
+            <h3 class="title is-4">Datasets</h3>
+            <p>
+              FairMedFM includes 17 publicly available datasets to evaluate fairness in FMs in medical imaging. These datasets vary in task type (classification and segmentation), dimension (2D and 3D), modality (OCT, X-ray, CT, MRI, Ultrasound, Fundus, dermatology), body part (brain, eyes, skin, thyroid, chest, liver, kidney, spine), number of classes (ranging from 2 to 15), number of samples (ranging from 20 to more than 350k), sensitive attribute (sex, age, race, preferred language, skin tone), and SA skewness (Male : Female ranging from 0.19 to 1.67). Some of the datasets include CheXpert, MIMIC-CXR, HAM10000, FairVLMed10k, GF3300, and more.
+            </p>
+            
+            <h3 class="title is-4">Models</h3>
+            <p>
+              <strong>Classification FMs:</strong> FairMedFM uses 11 FMs from two categories: vision models (VMs) like C2L, DINOv2, MedLVM, MedMAE, MoCo-CXR, and vision-language models (VLMs) like CLIP, BLIP, BLIP2, MedCLIP, PubMedCLIP, BiomedCLIP. The evaluation is performed using linear probing (LP), parameter-efficient fine-tuning (PEFT), and CLIP-ZS and CLIP-Adapt for vision-language models.
+            </p>
+            <p>
+              <strong>Segmentation FMs:</strong> Nine SegFMs from three categories are used: general-SegFMs (SAM, MobileSAM, TinySAM), 2D Med-SegFMs (MedSAM, SAM-Med2D, FT-SAM), and 3D Med-SegFMs (SAM-Med3D, FastSAM3D). These models are evaluated using different types of prompts like center, rand, rands, and bbox.
+            </p>
+            
+            <h3 class="title is-4">Unfairness Mitigation Methods</h3>
+            <p>
+              FairMedFM integrates several bias mitigation strategies categorized as:
+              <ul>
+                <li><strong>Group rebalancing:</strong> Adjusting representation of different subgroups.</li>
+                <li><strong>Adversarial training:</strong> Penalizing models for recognizing sensitive attributes.</li>
+                <li><strong>Fairness constraints:</strong> Adding fairness metrics to the training objective.</li>
+                <li><strong>Subgroup-tailored modeling:</strong> Different model parameters for different subgroups.</li>
+                <li><strong>Domain generalization:</strong> Improving model performance across various domains.</li>
+              </ul>
+            </p>
+            
+            <h3 class="title is-4">Evaluation Metrics</h3>
+            <p>
+              FairMedFM evaluates fairness using the following metrics:
+              <ul>
+                <li><strong>Utility:</strong> AUC for classification, Dice similarity score (DSC) for segmentation.</li>
+                <li><strong>Group fairness:</strong> Including metrics like delta AUC, Equalized Odds (EqOdds), delta DSC, DSC skewness, and expected calibration error gap (ECEΔ).</li>
+                <li><strong>Utility-fairness trade-off:</strong> Metrics like equity-scaled AUC (AUC_ES) and equity-scaled DSC (DSC_ES).</li>
+              </ul>
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+    
 
 
 <section class="hero is-small">
