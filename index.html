@@ -283,7 +283,7 @@
       <div class="container is-max-desktop">
         <div class="hero-body">
     
-          <img src="https://raw.githubusercontent.com/FairMedFM/FairMedFM/segmentation/figs/main.png" alt="teaser">
+          <img src="https://raw.githubusercontent.com/FairMedFM/FairMedFM/main/figs/main.png" alt="teaser">
           Overview of the FairMedFM framework, a standardized pipeline to investigate fairness on diverse datasets (2D, 2.5D, and 3D), comprehensive functionalities (various FMs, tasks, usages, and debias algorithms), thorough evaluation metrics.      
         </div>
       </div>
@@ -317,54 +317,13 @@
       </div>
 
       <div class="content has-text-justified">
-        <br>
-        <p>
-          Our generation exploitation attack explores various generation strategies, primarily centered around the system prompt and decoding strategies. Regarding the system prompt, we consider either 1) prepending it before the user instruction, or 2) <b> not including it</b>. In terms of decoding strategies, we experiment with the <b>temperature sampling, top-p sampling and top-k sampling with different hyper-parameters</b>. 
-        </p>  
-          
-        <p> In addition to existing benchmarks, we also introduce the <a href="https://github.com/Princeton-SysML/Jailbreak_LLM/blob/main/data/MaliciousInstruct.txt">MaliciousInstruct dataset</a>, which contains 100 malicious instructions of 10 different malicious intents for evaluation. We evaluate on 11 models: <a href="https://lmsys.org/blog/2023-03-30-vicuna/">Vicuna</a> (7B, 13B, and 33B), <a href="https://www.mosaicml.com/blog/mpt-7b">MPT</a> (7B and 30B), <a href="https://falconllm.tii.ae/">Falcon</a> (7B and 40B), and <a href="https://ai.meta.com/llama/">LLaMA2</a> (7B, 13B, 7B-chat, and 13B-chat). Note that among all the models, only LLaMA2-7B-chat and LLaMA2-13B-chat have been explicitly noted to have undergone safety alignment. For these two models, we sample 8 times for each decoding variant to further enhance the attack performance.
-        </p>
-
-        </div>
-
-        <p>As shown, we are able to boost the attack success rate for 11 models to >95% with our generation exploitation attack. <span style="color: red;">Alarmingly, for models that have undergone safety alignment (marked with "♠"), <b>a simple exploitation of generation variants increases the risk from 0% to 95%!     </b></span>  Human evaluation further shows that among the misaligned output, more than 50% of them provide harmful instructions.</p>
-        
-        <p>Moreover, our generation exploitation attack consistently strikes higher success rates than the SOTA attack by <a href="https://llm-attacks.org/">Zou et al. </a>,
-          while its compute time is an order-of-magnitude less (around 30x).</p>
-
-        <p> Here are 10 examples for our attack on the LLaMA2-7B-chat model, each for a distinct malicious intent. <label for="select-data">You can select the type of malicious intent from the dropdown list:</label> 
-    <select id="select-data"; style="padding: 2px; background:#b19cd7; border:none; color:white; font-weight:400">
-        <option value="data1">Psychological manipulation</option>
-        <option value="data2">Sabotage</option>
-        <option value="data3">Theft</option>
-        <option value="data4">Defamation</option>
-        <option value="data5">Cyberbullying</option>
-        <option value="data6">False accusation</option>
-        <option value="data7">Tax fraud</option>
-        <option value="data8">Hacking</option>
-        <option value="data9">Fraud</option>
-        <option value="data10">Illegal drug use</option>
-    </select>
-    <b>Please note that these responses do contain content that may be harmful.</b>
-
-    <table id="data-table">
-        <thead>
-            <tr>
-              <th>Category</th>
-              <th>Malicious Instruction</th>
-              <th><span style="color: green">Default Generation</span> <br>(top-p=0.9, temperature=0.1)</th>
-              <th><span style="color: red">Exploited Generation</span> <br>(our attack)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Table content will be dynamically generated here -->
-        </tbody>
-    </table>
-
-
-
-
-        <!-- </p> -->
+        <ol>
+          <li><strong>Dataloader</strong> provides a consistent interface for loading and processing imaging data across various modalities and dimensions, supporting both classification and segmentation tasks.</li>
+          <li><strong>Model</strong> is a one-stop library that includes implementations of the most popular pre-trained foundation models for medical image analysis.</li>
+          <li><strong>Usage Wrapper</strong> encapsulates foundation models for various use cases and tasks, including linear probe, zero-shot inference, PEFT, promptable segmentation, etc.</li>
+          <li><strong>Trainer</strong> offers a unified workflow for fine-tuning and testing wrapped models, and includes state-of-the-art unfairness mitigation algorithms.</li>
+          <li><strong>Evaluation</strong> includes a set of metrics and tools to visualize and analyze fairness across different tasks.</li>
+        </ol>        
       </div>
     </div>
   </div>
