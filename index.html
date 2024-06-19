@@ -154,16 +154,10 @@
           Overview
         </a>
           <a class="navbar-item" href="#motivation">
-            Motivation
+            Comprehensiveness 
           </a>
           <a class="navbar-item" href="#attack">
-            Our Attack
-          </a>
-          <a class="navbar-item" href="#defense">
-            A Proactive Defense
-          </a>
-          <a class="navbar-item" href="#disclosure">
-            Ethics, Disclosure and Acknowledgement
+            Extendibility
           </a>
           <a class="navbar-item" href="#reference">
             BibTeX
@@ -299,22 +293,11 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop is-centered has-text-centered">
-      <h2 class="title is-3", id="motivation">Motivation: Fixed Generation Configuration for Safety Evaluation in LLM</h2>
+      <h2 class="title is-3", id="motivation">A Comprehensive Medical FM Integration Pipeline</h2>
       <div class="content has-text-justified">
         <p>
-          Decoding strategies are how language models choose what words they should output once they know the probabilities. Greedy decoding selects the most probable token, while sampling-based decoding randomly selects the next word using a temperature parameter-controlled probability distribution. Variants of sampling-based decoding include <a href="https://arxiv.org/pdf/1904.09751.pdf">top-p sampling</a> and <a href="https://arxiv.org/pdf/1805.04833.pdf">top-k sampling</a>, which restrict the sampling to the most probable tokens. 
-
-          
-          <p>  However, we notice that <span style="color: darkorange;"><b>open-source LLMs are usually evaluated for alignment using only default generation methods</b></span>. 
-          
-          For instance, <a href="https://arxiv.org/pdf/2307.09288.pdf">Touvron et al.</a> conducts extensive alignment evaluations of LLaMA2 and reports very low violation rates for LLaMA2-chat models (<5%, see their Figure 19), using the following fixed generation approach: 
-          <!-- top-p sampling with p=0.9 and temperature=0.1 and always prepending a system prompt (a guideline intentionally prepended to steer model generation):  -->
-          <ul>
-            <li>In Section 4.1: <i>"For decoding, we set temperature to 0.1 and use nucleus sampling with top-p set to 0.9"</i>;</li>
-            <li>In Appendix A.3.7: <i>"While collecting generations, we append a system prompt prior to the prompt for evaluation"</i>. (The system prompt is a guideline intentionally prepended to steer LLMs towards helpful and harmless generation.)</li>
-          </ul>
-
-          <p> While pragmatic, this approach risks missing cases where the model's alignment substantially deteriorates with other generation strategies, which motivates our generation exploitation attack. 
+          The figure above presents the pipeline of FairMedFM framework, which offers an easy-to-use codebase for benchmarking the fairness of FMs in medical imaging. FairMedFM currently contains 17 datasets (9 for classification and 8 for segmentation) and 20 FMs (11 for classification and 9 for segmentation).
+          It also integrates 9 fairness metrics (5 for classification and 4 for segmentation) and 6 unfairness mitigation algorithms (3 for classification and 3 for segmentation), trying to provide a relatively comprehensive benchmark for fairness in medical imaging FMs.
       </div>
     </div>
   </div>
@@ -382,25 +365,6 @@
     </table>
 
 
-
-
-        <!-- </p> -->
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop is-centered has-text-centered">
-      <h2 class="title is-3", id="defense">A Proactive Defense Method</h2>
-      
-      <div class="content has-text-justified">
-        <br>
-        <p>
-          This catastrophic failure of alignment motivates us to design a more effective model alignment approach. Specifically, we propose a new alignment strategy named <span style="color:green"><b>generation-aware alignment</b></span>, which proactively aligns models with outputs generated under various generation configurations  (refer to Section 5 of our paper for more details). We show that this strategy can defend the generation exploitation attack reasonably, reducing the attack success rate from 95% to 69% for the LLaMA2-7B-chat model.
 
 
         <!-- </p> -->
