@@ -310,6 +310,11 @@
       <h2 class="title is-3", id="attack">An Extremely Simple & Extendible Codebase</h2>
       <span style="color: rgb(10, 239, 6);">Our codebase consists of five modules.</span>
       
+      <div class="container is-max-desktop">
+        <div>
+          <img src="https://raw.githubusercontent.com/FairMedFM/FairMedFM/blob/main/figs/package.png" alt="teaser">
+        </div>
+
       <div class="content has-text-justified">
         <br>
         <p>
@@ -319,15 +324,6 @@
         <p> In addition to existing benchmarks, we also introduce the <a href="https://github.com/Princeton-SysML/Jailbreak_LLM/blob/main/data/MaliciousInstruct.txt">MaliciousInstruct dataset</a>, which contains 100 malicious instructions of 10 different malicious intents for evaluation. We evaluate on 11 models: <a href="https://lmsys.org/blog/2023-03-30-vicuna/">Vicuna</a> (7B, 13B, and 33B), <a href="https://www.mosaicml.com/blog/mpt-7b">MPT</a> (7B and 30B), <a href="https://falconllm.tii.ae/">Falcon</a> (7B and 40B), and <a href="https://ai.meta.com/llama/">LLaMA2</a> (7B, 13B, 7B-chat, and 13B-chat). Note that among all the models, only LLaMA2-7B-chat and LLaMA2-13B-chat have been explicitly noted to have undergone safety alignment. For these two models, we sample 8 times for each decoding variant to further enhance the attack performance.
         </p>
 
-        <div class="container is-max-desktop">
-          <div>
-      
-            <img src="https://raw.githubusercontent.com/FairMedFM/FairMedFM/blob/main/figs/package.png" alt="teaser">
-                  
-
-                  
-            
-          </div>
         </div>
 
         <p>As shown, we are able to boost the attack success rate for 11 models to >95% with our generation exploitation attack. <span style="color: red;">Alarmingly, for models that have undergone safety alignment (marked with "♠"), <b>a simple exploitation of generation variants increases the risk from 0% to 95%!     </b></span>  Human evaluation further shows that among the misaligned output, more than 50% of them provide harmful instructions.</p>
