@@ -201,7 +201,7 @@
               <a href="www.google.com">Kevin Zhou</a>,
             </span>
             <span class="author-block">
-              <a href="www.google.com">Xiaoxiao Li</a>,
+              <a href="www.google.com">Xiaoxiao Li</a>
             </span>
           </div>
 
@@ -234,7 +234,7 @@
               
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/Princeton-SysML/Jailbreak_LLM"
+                <a href="https://github.com/Nanboy-Ronan/FairMedFM"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -268,6 +268,7 @@
         
         <p> The advent of foundation models (FMs) in healthcare offers unprecedented opportunities to enhance medical diagnostics through automated classification and segmentation tasks. However, these models also raise significant concerns about their fairness, especially when applied to diverse and underrepresented populations in healthcare applications. Currently, there is a lack of comprehensive benchmarks, standardized pipelines, and easily adaptable libraries to evaluate and understand the fairness performance of FMs in medical imaging, leading to considerable challenges in formulating and implementing solutions that ensure equitable outcomes across diverse patient populations. To fill this gap, we introduce \ours, a fairness benchmark for FM research in medical imaging. \ours{} integrates with 17 popular medical imaging datasets, encompassing different modalities, dimensionalities, and sensitive attributes. It explores 20 widely used FMs, with various usages such as zero-shot learning, linear probing, parameter-efficient fine-tuning, and prompting in various downstream tasks -- classification and segmentation. Our exhaustive analysis evaluates the fairness performance over different evaluation metrics from multiple perspectives, revealing the existence of bias, varied utility-fairness trade-offs on different FMs, consistent disparities on the same datasets regardless FMs, and limited effectiveness of existing unfairness mitigation methods. 
           <ul>
+            <li>We offer a comprehensive evaluation pipeline covering <span style="color: red;"><b>17 diverse medical imaging datasets, 20 FMs, and their usages </b> (see Tab.~\ref{tab:baseline_benckmark}). This benchmark addresses the need for a consistent evaluation and standardized process to investigate FMs' fairness in medical imaging.</li>
             <li>By exploiting different generation strategies, including varying decoding hyper-parameters and sampling methods, <span style="color: red;"><b>we increase the misalignment rate from 0% to more than 95% across 11 language models</b></span> including LLaMA2, Vicuna, Falcon, and MPT families, outperforming state-of-the-art attacks with </b></span>30x lower computational cost</b></span>.</li>
             <li><span style="color: green;"><b>We also propose an effective alignment method</b></span> that explores diverse generation strategies, which can reasonably reduce the misalignment rate under our attack. </li>
           </ul>
@@ -283,7 +284,7 @@
         <div class="hero-body">
     
           <img src="https://github.com/FairMedFM/FairMedFM/blob/segmentation/figs/main.png" alt="teaser">
-          Overview of the \ours{} framework, a standardized pipeline to investigate fairness on diverse datasets (2D, 2.5D, and 3D), comprehensive functionalities (various FMs, tasks, usages, and debias algorithms), thorough evaluation metrics.      
+          Overview of the FairMedFM framework, a standardized pipeline to investigate fairness on diverse datasets (2D, 2.5D, and 3D), comprehensive functionalities (various FMs, tasks, usages, and debias algorithms), thorough evaluation metrics.      
         </div>
       </div>
     <!-- </section> -->
