@@ -1,0 +1,56 @@
+name: Pages
+# Publishes the project page at / and the FairMedFM documentation (built from the
+# FairMedFM/FairMedFM repository) at /docs/.
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '23 4 * * *'   # pick up documentation changes merged into FairMedFM daily
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: FairMedFM branch, tag or commit to build the documentation from
+        default: main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: FairMedFM/FairMedFM
+          ref: ${{ inputs.ref || 'main' }}
+          path: fairmedfm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r fairmedfm/docs/requirements.txt
+      - name: Build the documentation into _site/docs
+        working-directory: fairmedfm
+        run: mkdocs build --strict --site-dir "$GITHUB_WORKSPACE/_site/docs"
+      - name: Add the project page, sitemap, robots.txt and llms.txt
+        run: python scripts/assemble_site.py _site
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
