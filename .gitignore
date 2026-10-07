@@ -1,1 +1,4 @@
 commit.sh
+.DS_Store
+_site/
+fairmedfm/

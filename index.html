@@ -3,8 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="FairMedFM: Fairness Benchmarking for Medical Imaging Foundation Models">
-  <meta name="keywords" content="Foundation Models, Medical Image Analysis">
+        content="FairMedFM: fairness evaluation for any binary classification or segmentation model (pip install fairmedfm) and a fairness benchmark of 20 medical imaging foundation models on 17 datasets.">
+  <meta name="keywords" content="fairness, fairness metrics, algorithmic fairness, bias evaluation, segmentation fairness, equalized odds, foundation models, medical image analysis, benchmark">
+  <link rel="canonical" href="https://nanboy-ronan.github.io/FairMedFM-page/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="FairMedFM: Fairness Benchmarking for Medical Imaging Foundation Models">
+  <meta property="og:description" content="FairMedFM: fairness evaluation for any binary classification or segmentation model (pip install fairmedfm) and a fairness benchmark of 20 medical imaging foundation models on 17 datasets.">
+  <meta property="og:url" content="https://nanboy-ronan.github.io/FairMedFM-page/">
+  <meta property="og:image" content="https://nanboy-ronan.github.io/FairMedFM-page/docs/assets/social-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "FairMedFM: Fairness Benchmarking for Medical Imaging Foundation Models",
+    "url": "https://arxiv.org/abs/2407.00983",
+    "datePublished": "2024",
+    "author": [
+      {"@type": "Person", "name": "Ruinan Jin"}, {"@type": "Person", "name": "Zikang Xu"},
+      {"@type": "Person", "name": "Yuan Zhong"}, {"@type": "Person", "name": "Qiongsong Yao"},
+      {"@type": "Person", "name": "Qi Dou"}, {"@type": "Person", "name": "S. Kevin Zhou"},
+      {"@type": "Person", "name": "Xiaoxiao Li"}
+    ],
+    "isBasedOn": {"@type": "SoftwareSourceCode", "name": "FairMedFM", "codeRepository": "https://github.com/FairMedFM/FairMedFM", "url": "https://nanboy-ronan.github.io/FairMedFM-page/docs/"}
+  }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
     // JavaScript code goes here
@@ -34,7 +57,7 @@
         updateTable();
     });
 </script>
-  <title>FairMedFM</title>
+  <title>FairMedFM: Fairness Benchmarking for Medical Imaging Foundation Models</title>
 
 <!-- Google Tag Manager -->
 <script>(function (w, d, s, l, i) {
@@ -56,7 +79,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/tifa.png">
+  <link rel="icon" href="./docs/assets/favicon.png">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -174,6 +197,28 @@
                   <span>Code</span>
                   </a>
               </span>
+
+              <!-- Documentation Link. -->
+              <span class="link-block">
+                <a href="https://nanboy-ronan.github.io/FairMedFM-page/docs/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-book"></i>
+                  </span>
+                  <span>Docs</span>
+                  </a>
+              </span>
+
+              <!-- PyPI Link. -->
+              <span class="link-block">
+                <a href="https://pypi.org/project/fairmedfm/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-python"></i>
+                  </span>
+                  <span>PyPI</span>
+                  </a>
+              </span>
             </div>      
           </div>
         </div>
@@ -188,6 +233,27 @@
 
 
 
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" id="use">Evaluate the fairness of your model</h2>
+        <div class="content has-text-justified">
+          <p>FairMedFM works with <b>any binary classification or segmentation model</b>, not only the benchmarked
+            foundation models. Save one row per sample with your model's prediction (positive-class probability, or
+            Dice score for segmentation) and sensitive attributes such as sex, age or race, then score it:</p>
+          <pre style="text-align: left;">pip install fairmedfm
+fairmedfm score --task cls --input predictions.csv --sensitive sex age</pre>
+          <p>It reports subgroup AUC, accuracy and calibration gaps, equal opportunity, equalized odds, and Dice
+            disparities, and needs no GPU. To run the benchmark itself, install <code>fairmedfm[cls]</code> or
+            <code>fairmedfm[seg]</code> and use <code>fairmedfm run</code>.
+            See the <a href="https://nanboy-ronan.github.io/FairMedFM-page/docs/">documentation</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="section">
   <div class="container is-max-desktop">
