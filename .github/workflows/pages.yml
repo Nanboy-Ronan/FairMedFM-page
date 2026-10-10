@@ -1,16 +1,10 @@
 name: Pages
-# Publishes the project page at / and the FairMedFM documentation (built from the
-# FairMedFM/FairMedFM repository) at /docs/.
+# FairMedFM is now published at https://fairmedfm.github.io/FairMedFM/ from the FairMedFM/FairMedFM repository.
+# This site only redirects the old URLs there.
 on:
   push:
     branches: [main]
-  schedule:
-    - cron: '23 4 * * *'   # pick up documentation changes merged into FairMedFM daily
   workflow_dispatch:
-    inputs:
-      ref:
-        description: FairMedFM branch, tag or commit to build the documentation from
-        default: main
 
 permissions:
   contents: read
@@ -23,39 +17,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      changed: ${{ steps.assemble.outputs.changed }}
-      indexnow_key: ${{ steps.assemble.outputs.indexnow_key }}
+      urls: ${{ steps.build.outputs.urls }}
+      indexnow_key: ${{ steps.build.outputs.indexnow_key }}
     steps:
-      # Full histories: the sitemap dates each page by its last commit.
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/checkout@v4
-        with:
-          repository: FairMedFM/FairMedFM
-          ref: ${{ inputs.ref || 'main' }}
-          path: fairmedfm
-          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install -r fairmedfm/docs/requirements.txt
-      - name: Build the documentation into _site/docs
-        working-directory: fairmedfm
-        run: mkdocs build --strict --site-dir "$GITHUB_WORKSPACE/_site/docs"
-      - name: Add the project page, sitemap, robots.txt, llms.txt and verification files
-        id: assemble
+      - id: build
         run: |
-          python scripts/assemble_site.py _site fairmedfm > changed-urls.txt
-          cat changed-urls.txt
-          echo "changed=$(python -c 'import json,sys; print(json.dumps(sys.stdin.read().split()))' < changed-urls.txt)" >> "$GITHUB_OUTPUT"
+          mkdir _site
+          python scripts/redirects.py _site > urls.txt
+          echo "urls=$(python -c 'import json,sys; print(json.dumps(sys.stdin.read().split()))' < urls.txt)" >> "$GITHUB_OUTPUT"
           echo "indexnow_key=$(ls verification | sed -n 's/^\([0-9a-f]\{32\}\)\.txt$/\1/p' | head -1)" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
   deploy:
     needs: build
-    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -66,13 +45,12 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
-      # IndexNow tells Bing (which also serves Copilot and ChatGPT search), Yandex, Seznam and Naver about pages
-      # changed since yesterday. The key file is published from verification/.
-      - name: Submit changed pages to IndexNow
-        if: needs.build.outputs.changed != '[]' && needs.build.outputs.changed != '' && needs.build.outputs.indexnow_key != ''
+      # Tell Bing and other IndexNow engines that the old URLs changed, so they pick up the redirects.
+      - name: Submit the redirected pages to IndexNow
+        if: needs.build.outputs.indexnow_key != ''
         continue-on-error: true
         env:
-          URLS: ${{ needs.build.outputs.changed }}
+          URLS: ${{ needs.build.outputs.urls }}
           KEY: ${{ needs.build.outputs.indexnow_key }}
         run: |
           payload=$(python3 -c 'import json,os; k=os.environ["KEY"]; print(json.dumps({"host": "nanboy-ronan.github.io", "key": k, "keyLocation": f"https://nanboy-ronan.github.io/FairMedFM-page/{k}.txt", "urlList": json.loads(os.environ["URLS"])}))')
