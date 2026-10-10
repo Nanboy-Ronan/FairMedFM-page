@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="description"
@@ -25,38 +25,10 @@
       {"@type": "Person", "name": "Qi Dou"}, {"@type": "Person", "name": "S. Kevin Zhou"},
       {"@type": "Person", "name": "Xiaoxiao Li"}
     ],
-    "isBasedOn": {"@type": "SoftwareSourceCode", "name": "FairMedFM", "codeRepository": "https://github.com/FairMedFM/FairMedFM", "url": "https://nanboy-ronan.github.io/FairMedFM-page/docs/"}
+    "isBasedOn": {"@type": "SoftwareSourceCode", "name": "FairMedFM", "codeRepository": "https://github.com/FairMedFM/FairMedFM", "url": "https://nanboy-ronan.github.io/FairMedFM-page/docs/", "license": "https://www.apache.org/licenses/LICENSE-2.0", "programmingLanguage": "Python", "downloadUrl": "https://pypi.org/project/fairmedfm/"}
   }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>
-    // JavaScript code goes here
-    document.addEventListener('DOMContentLoaded', function () {
-        const selectData = document.getElementById('select-data');
-        const tableBody = document.querySelector('#data-table tbody');
-
-        function updateTable() {
-            const selectedData = selectData.value;
-            const dataSet = dataSets[selectedData];
-
-            tableBody.innerHTML = '';
-
-            dataSet.forEach(rowData => {
-                const row = document.createElement('tr');
-                Object.values(rowData).forEach(value => {
-                    const cell = document.createElement('td');
-                    cell.textContent = value;
-                    row.appendChild(cell);
-                });
-                tableBody.appendChild(row);
-            });
-        }
-
-        selectData.addEventListener('change', updateTable);
-
-        updateTable();
-    });
-</script>
   <title>FairMedFM: Fairness Benchmarking for Medical Imaging Foundation Models</title>
 
 <!-- Google Tag Manager -->
@@ -133,28 +105,28 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <img src=https://raw.githubusercontent.com/FairMedFM/FairMedFM/segmentation/figs/icon.png width=40> <h1 class="title is-1 publication-title">FairMedFM: Fairness Benchmarking for Medical Imaging Foundation Models</h1>
+          <img src="https://raw.githubusercontent.com/FairMedFM/FairMedFM/main/figs/icon.png" width="40" alt="FairMedFM logo"> <h1 class="title is-1 publication-title">FairMedFM: Fairness Benchmarking for Medical Imaging Foundation Models</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="www.google.com">Ruinan Jin</a><sup>*</sup>,
+              Ruinan Jin<sup>*</sup>,
             </span>
             <span class="author-block">
-              <a href="www.google.com">Zikang Xu</a><sup>*</sup>,
+              Zikang Xu<sup>*</sup>,
             </span>
             <span class="author-block">
-              <a href="www.google.com">Yuan Zhong</a><sup>*</sup>,
+              Yuan Zhong<sup>*</sup>,
             </span>
             <span class="author-block">
-              <a href="www.google.com">Qingsong Yao</a>,
+              Qingsong Yao,
             </span>
             <span class="author-block">
-              <a href="www.google.com">Qi Dou</a><sup>†</sup>,
+              Qi Dou<sup>†</sup>,
             </span>
             <span class="author-block">
-              <a href="www.google.com">Kevin Zhou</a><sup>†</sup>,
+              Kevin Zhou<sup>†</sup>,
             </span>
             <span class="author-block">
-              <a href="www.google.com">Xiaoxiao Li</a><sup>†</sup>
+              Xiaoxiao Li<sup>†</sup>
             </span>
           </div>
           
@@ -253,9 +225,12 @@ fm.dice_gap(dice, sensitive_features=group)                      # segmentation
 report = fm.evaluate(y_true, y_score, sensitive_features=df[["sex", "age"]], bins={"age": [40, 60]})</pre>
           <p>Labels, probabilities, logits, masks, NumPy arrays, pandas objects and PyTorch tensors all work, and the
             metrics also serve as scikit-learn scorers and as training-time monitors. A command line handles
-            prediction files. To run the benchmark itself, install <code>fairmedfm[cls]</code> or
-            <code>fairmedfm[seg]</code> and use <code>fairmedfm run</code>. See the
-            <a href="https://nanboy-ronan.github.io/FairMedFM-page/docs/">documentation</a>.</p>
+            prediction files. The package is open source under the Apache-2.0 license and needs only NumPy, pandas and
+            scikit-learn. To run the benchmark itself, install the benchmark runner from GitHub and use
+            <code>fairmedfm run</code>. See the <a href="https://nanboy-ronan.github.io/FairMedFM-page/docs/">documentation</a>,
+            the <a href="https://nanboy-ronan.github.io/FairMedFM-page/docs/how-to/">how-to recipes</a>, the
+            <a href="https://nanboy-ronan.github.io/FairMedFM-page/docs/metrics/">metric definitions</a> and the
+            <a href="https://nanboy-ronan.github.io/FairMedFM-page/docs/comparison/">comparison with Fairlearn and AIF360</a>.</p>
         </div>
       </div>
     </div>
@@ -294,7 +269,7 @@ report = fm.evaluate(y_true, y_score, sensitive_features=df[["sex", "age"]], bin
       <div class="container is-max-desktop">
         <div class="hero-body">
     
-          <img src="https://raw.githubusercontent.com/FairMedFM/FairMedFM/main/figs/main.png" alt="teaser">
+          <img src="https://raw.githubusercontent.com/FairMedFM/FairMedFM/main/figs/main.png" alt="Overview of the FairMedFM fairness benchmark: datasets, foundation models, usages, debiasing methods and fairness metrics">
           Overview of the FairMedFM framework, a standardized pipeline to investigate fairness on diverse datasets (2D, 2.5D, and 3D), comprehensive functionalities (various FMs, tasks, usages, and debias algorithms), thorough evaluation metrics.      
         </div>
       </div>
@@ -360,7 +335,7 @@ report = fm.evaluate(y_true, y_score, sensitive_features=df[["sex", "age"]], bin
       
       <div class="container is-max-desktop">
         <div>
-          <img src="https://raw.githubusercontent.com/FairMedFM/FairMedFM/main/figs/package.png" alt="teaser">
+          <img src="https://raw.githubusercontent.com/FairMedFM/FairMedFM/main/figs/package.png" alt="FairMedFM codebase modules: dataloader, model, usage wrapper, trainer and evaluation">
         </div>
       </div>
 
